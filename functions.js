@@ -1,35 +1,37 @@
-function insertPersons () {
-    var tbody = document.querySelector ('#list tbody');
-    tbody.innerHTML = getPersonsHTML (data);
+function insertPersons(persons) {
+    const tbody = document.querySelector('#list tbody');
+    tbody.innerHTML = getPersonsHtml(persons);
 }
-
-function getPersonsHTML () {
-    return getPersonHTML ({firstName : 'Vlad'}) +
-           getPersonHTML ({firstName : 'Matei'});
+function getPersonsHtml (persons) {
+    return getPersonHtml(persons[0]) + getPersonHtml(persons[1]);
 }
-
-function getPersonHTML () {
+function getPersonHtml (person) {
+    const gitHub = person.gitHub;
     return `<tr>
-    <td>Vlad</td>
-    <td>Felecan</td>
+    <td>${person.firstName}</td>
+    <td>${person.lastName}</td>
     <td>
-        <a target="_blank" href="https://github.com/felecanvlad">GitHub</a>
+        <a target="_blank" href="https://github.com/${gitHub}">GitHub</a>
         <a target="_blank" href="https://www.linkedin.com/">Linkedin</a>
-    </td>
-</tr>`
+    </td>`
 }
 
-var data = [
-    {
-        "firstName" : "Vlad",
-        "lastName" : "Felecan",
-        "gitHub" : "felecanvlad"
-    },
-    {
-        "firstName" : "Matei",
-        "lastName" : "Nicolae",
-        "gitHub" : "nmatei"
-    }
-];
+// var data = [
+//     {
+//     "firstName": "Vlad",
+//     "lastName": "Felecan",
+//     "gitHub": "felecanvlad"
+// },
+// {
+//     "firstName": "Matei",
+//     "lastName": "Nicolae",
+//     "gitHub": "nmatei"
+// }
+// ]
 
-insertPersons ()
+fetch ('Data/team.json')
+    .then(res => res.json())
+    .then(data  => {
+        insertPersons(data);
+    });
+
