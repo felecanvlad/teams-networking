@@ -15,10 +15,29 @@ function getPersonHtml(person) {
         <a target="_blank" href="https://www.linkedin.com/">Linkedin</a>
     </td>`
 }
+let allPersons = [];
 
 fetch('Data/team.json')
     .then(res => res.json())
     .then(data => {
+        allPersons = data;
         insertPersons(data);
     });
 
+function searchPersons (text) {
+    console.warn("search",text);
+     return allPersons.filter(person => {
+         console.info(person.firstName);
+         return person.firstName == text;
+     });
+
+}    
+
+const search = document.getElementById ('search');
+search.addEventListener("input", e => {
+    const text = e.target.value;
+    
+    const filtrate = searchPersons(text);
+
+    insertPersons(filtrate);
+})
