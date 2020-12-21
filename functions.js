@@ -3,10 +3,7 @@ function insertPersons(persons) {
     tbody.innerHTML = getPersonsHtml(persons);
 }
 function getPersonsHtml(persons) {
-    var htmlElements = persons.map(function (person) {
-        return getPersonHtml(person);
-    });
-    return htmlElements.join("");
+    return persons.map(getPersonHtml).join("");
 }
 function getPersonHtml(person) {
     const gitHub = person.gitHub;
