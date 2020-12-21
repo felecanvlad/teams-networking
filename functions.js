@@ -2,10 +2,13 @@ function insertPersons(persons) {
     const tbody = document.querySelector('#list tbody');
     tbody.innerHTML = getPersonsHtml(persons);
 }
-function getPersonsHtml (persons) {
-    return getPersonHtml(persons[0]) + getPersonHtml(persons[1]);
+function getPersonsHtml(persons) {
+    var htmlElements = persons.map(function (person) {
+        return getPersonHtml(person);
+    });
+    return htmlElements.join("");
 }
-function getPersonHtml (person) {
+function getPersonHtml(person) {
     const gitHub = person.gitHub;
     return `<tr>
     <td>${person.firstName}</td>
@@ -16,22 +19,9 @@ function getPersonHtml (person) {
     </td>`
 }
 
-// var data = [
-//     {
-//     "firstName": "Vlad",
-//     "lastName": "Felecan",
-//     "gitHub": "felecanvlad"
-// },
-// {
-//     "firstName": "Matei",
-//     "lastName": "Nicolae",
-//     "gitHub": "nmatei"
-// }
-// ]
-
-fetch ('Data/team.json')
+fetch('Data/team.json')
     .then(res => res.json())
-    .then(data  => {
+    .then(data => {
         insertPersons(data);
     });
 
