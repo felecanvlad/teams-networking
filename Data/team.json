@@ -1,15 +1,18 @@
 [
     {
+        "id" : "a123",
         "firstName" : "Vlad",
         "lastName" : "Felecan",
         "gitHub" : "felecanvlad"
     },
     {
+        "id" : "b654",
         "firstName" : "Nicolae",
         "lastName" : "Matei",
         "gitHub" : "nmatei"
     },
     {
+        "id" : "3afe",
         "firstName" : "Ion",
         "lastName" : "Popoescu",
         "gitHub" : "pion"
