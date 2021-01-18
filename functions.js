@@ -36,7 +36,8 @@ function getPersonHtml(person) {
     </td>
     <td>
         <a href="#" class = "delete-row" data-id = "${person.id}">&#10006;</a>
-    </td>     
+        
+    </td>
 </tr>`;
 }
 let allPersons = [];
@@ -92,13 +93,20 @@ function saveTeamMember() {
 
 function deleteTeamMember (id) {
     console.warn('delete',id);
-    fetch("http://localhost:3000/teams-json/delete", {
-        method: "DELETE",
+    fetch(API.DELETE.URL, {
+        method: "API.DELETE.METHOD",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({ id })
-        });
+     })
+            .then(res => res.json())
+            .then(r => {
+                console.warn(r);
+                if (r.success) {
+                    loadList();
+                }
+            });
 }
 
 function addEventListeners () {
